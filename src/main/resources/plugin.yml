@@ -1,0 +1,9 @@
+author: LPkkjHD
+name: PermissionEffects
+version: 0.1-SNAPSHOT
+website: http://freemine.de/
+main: de.freemine.permissioneffects.Main
+commands:
+  PermissionEffects:
+    aliases: [pe]
+    permission: pe.admin
