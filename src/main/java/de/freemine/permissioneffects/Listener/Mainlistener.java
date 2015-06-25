@@ -19,18 +19,18 @@ public class Mainlistener implements Listener {
         ArrayList<PotionEffectTypes> possibleEffects = new ArrayList<PotionEffectTypes>();
         Collections.addAll(possibleEffects,  PotionEffectTypes.values());
 
-        ArrayList<Integer> strengh = new ArrayList<Integer>();
-        strengh.add(1);
-        strengh.add(2);
-        strengh.add(3);
-        strengh.add(4);
+        ArrayList<Integer> strength = new ArrayList<Integer>();
+        strength.add(1);
+        strength.add(2);
+        strength.add(3);
+        strength.add(4);
 
         Player player = event.getPlayer();
 
         if (!player.hasPermission("pe.bypass") || !player.isOp()) {
             for (PotionEffectTypes effect : possibleEffects) {
                 if (player.hasPermission("pe." + effect.toString().toLowerCase())) {
-                    for (Integer integer : strengh) {
+                    for (Integer integer : strength) {
                         if (player.hasPermission("pe." + effect.toString().toLowerCase() + "." + integer.toString())) {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.getByName(effect.toString()), 100000000, integer -1, false, false));
                         }
