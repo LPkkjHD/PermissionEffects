@@ -9,8 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
-        getLogger().info("Enabling PermissionEffects by LPkkjHD");
-        getServer().getPluginManager().registerEvents(new Mainlistener(this), this);
+        getServer().getPluginManager().registerEvents(new Mainlistener(), this);
         getCommand("PermissionEffects").setExecutor(new command(this));
     }
 
