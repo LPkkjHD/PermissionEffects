@@ -36,7 +36,7 @@ public class command implements CommandExecutor {
                             ReloadPermissionEffects();
                             sender.sendMessage("§8§l[§7P§6E§8§l] §aReload complete");
                         } catch (Exception e) {
-                            sender.sendMessage("§4ERROR: §cfailed to reload the PermissionEffects");
+                            sender.sendMessage("§4ERROR: §cFailed to reload the PermissionEffects");
                             e.printStackTrace();
                         }
                     }
