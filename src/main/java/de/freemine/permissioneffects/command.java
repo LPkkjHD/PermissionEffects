@@ -69,7 +69,7 @@ public class command implements CommandExecutor {
 
         //setting the new Values
         for (Player player : main.getServer().getOnlinePlayers()) {
-            if (!player.hasPermission("pe.bypass") || player.isOp()) {
+            if (!player.hasPermission("pe.bypass") || !player.isOp()) {
                 for (PotionEffectTypes effect : possibleEffects) {
                     if (player.hasPermission("pe." + effect.toString().toLowerCase())) {
                         for (Integer integer : strengh) {

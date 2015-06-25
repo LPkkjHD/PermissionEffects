@@ -27,7 +27,7 @@ public class Mainlistener implements Listener {
 
         Player player = event.getPlayer();
 
-        if (!player.hasPermission("pe.bypass") || player.isOp()) {
+        if (!player.hasPermission("pe.bypass") || !player.isOp()) {
             for (PotionEffectTypes effect : possibleEffects) {
                 if (player.hasPermission("pe." + effect.toString().toLowerCase())) {
                     for (Integer integer : strengh) {
