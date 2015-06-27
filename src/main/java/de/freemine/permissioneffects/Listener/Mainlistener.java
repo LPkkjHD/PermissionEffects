@@ -1,9 +1,11 @@
 package de.freemine.permissioneffects.Listener;
 
+import de.freemine.permissioneffects.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -14,8 +16,28 @@ import java.util.Collections;
  * @author LPkkjHD
  */
 public class Mainlistener implements Listener {
+    private Main main;
+
+    public Mainlistener(Main main) {
+        this.main = main;
+    }
+
     @EventHandler
     public void PlayerJoin(PlayerJoinEvent event) {
+        addEffects(event.getPlayer());
+    }
+
+    @EventHandler
+    public void PlayerRespawnEvent(PlayerRespawnEvent event) {
+        final Player player = event.getPlayer();
+        main.getServer().getScheduler().scheduleSyncDelayedTask(main.plugin, new Runnable() {
+            public void run() {
+               addEffects(player);
+            }
+        }, 5L);
+    }
+
+    private void addEffects(Player player) {
         ArrayList<PotionEffectTypes> possibleEffects = new ArrayList<PotionEffectTypes>();
         Collections.addAll(possibleEffects,  PotionEffectTypes.values());
 
@@ -24,8 +46,6 @@ public class Mainlistener implements Listener {
         strength.add(2);
         strength.add(3);
         strength.add(4);
-
-        Player player = event.getPlayer();
 
         if (!player.hasPermission("pe.bypass") || !player.isOp()) {
             for (PotionEffectTypes effect : possibleEffects) {

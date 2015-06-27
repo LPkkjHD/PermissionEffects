@@ -7,9 +7,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author LPkkjHD
  */
 public class Main extends JavaPlugin {
+    public JavaPlugin plugin = this;
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new Mainlistener(), this);
+        getServer().getPluginManager().registerEvents(new Mainlistener(this), this);
         getCommand("PermissionEffects").setExecutor(new command(this));
     }
 
