@@ -1,9 +1,11 @@
 package de.freemine.permissioneffects.Listener;
 
 import de.freemine.permissioneffects.Main;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
@@ -35,6 +37,20 @@ public class Mainlistener implements Listener {
                addEffects(player);
             }
         }, 5L);
+    }
+
+    @EventHandler
+    public void PlayerEmptyBucket(PlayerItemConsumeEvent event) {
+        final Player player = event.getPlayer();
+        if (event.getItem().getType() == Material.MILK_BUCKET) {
+            System.out.println("MilkBucket");
+            main.getServer().getScheduler().scheduleSyncDelayedTask(main.plugin, new Runnable() {
+                public void run() {
+                    addEffects(player);
+                    System.out.println("added effects");
+                }
+            }, 5L);
+        }
     }
 
     private void addEffects(Player player) {
